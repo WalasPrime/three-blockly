@@ -1,0 +1,78 @@
+<script src="lib/blockly_compressed.js"></script>
+<script src="lib/blocks_compressed.js"></script>
+<script src="lib/en.js"></script>
+<script src="blocks.js"></script>
+
+<head>
+	<meta charset=utf-8>
+	<title>My first three.js app</title>
+	<style>
+		body { margin: 0; }
+		canvas { width: 100%; height: 100% }
+	</style>
+</head>
+
+<div id="blocklyDiv" style="height: 480px; width: 600px; position: fixed; opacity: 0.8;"></div>
+
+<xml id="toolbox" style="display: none">
+	<block type="cube"></block>
+	<block type="controls_if"></block>
+	<block type="controls_repeat_ext"></block>
+	<block type="logic_compare"></block>
+	<block type="math_number"></block>
+	<block type="math_arithmetic"></block>
+	<block type="text"></block>
+	<block type="text_print"></block>
+  </xml>
+
+  <script src="lib/three.min.js"></script>
+  <script>
+	  // Our Javascript will go here.
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild( renderer.domElement );
+
+		var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+		var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+		let objects = {};
+
+		camera.position.z = 5;
+		function animate() {
+			requestAnimationFrame( animate );
+			Object.keys(objects).forEach((key) => {
+				objects[key].rotation.x += 0.1;
+				objects[key].rotation.y += 0.1;
+			});
+			renderer.render( scene, camera );
+		}
+		animate();
+		// Blockly
+		function blocksChanged(event){
+			//var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
+			//console.log(code);
+			if(event.type == Blockly.Events.BLOCK_CREATE){
+				if(event.xml.attributes.type.value == 'cube'){
+					console.log('Spawn a cube!');
+					var cube = new THREE.Mesh( geometry, material );
+					cube.position.x = Math.random()*2-1;
+					cube.position.y = Math.random()*2-1;
+					cube.position.z = Math.random()*2-1;
+					scene.add( cube );
+					objects[event.blockId] = cube;
+				}
+				console.log('Block created:');
+				console.log(event);
+			}
+			if(event.type == Blockly.Events.BLOCK_DELETE){
+				if(event.oldXml.attributes.type.value == 'cube'){
+					scene.remove(objects[event.blockId]);
+					delete objects[event.blockId];
+				}
+			}
+		}
+		var workspacePlayground = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
+		workspacePlayground.addChangeListener(blocksChanged);
+  </script>
