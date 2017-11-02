@@ -1,6 +1,7 @@
 <script src="lib/blockly_compressed.js"></script>
 <script src="lib/blocks_compressed.js"></script>
 <script src="lib/en.js"></script>
+<script src="api.js"></script>
 <script src="blocks.js"></script>
 
 <head>
@@ -15,7 +16,7 @@
 <div id="blocklyDiv" style="height: 480px; width: 600px; position: fixed; opacity: 0.8;"></div>
 
 <xml id="toolbox" style="display: none">
-	<block type="cube"></block>
+	<block type="Cube"></block>
 	<block type="controls_if"></block>
 	<block type="controls_repeat_ext"></block>
 	<block type="logic_compare"></block>
@@ -26,6 +27,7 @@
   </xml>
 
   <script src="lib/three.min.js"></script>
+  <script src="graphics.js"></script>
   <script>
 	  // Our Javascript will go here.
 		var scene = new THREE.Scene();
@@ -34,9 +36,6 @@
 		var renderer = new THREE.WebGLRenderer();
 		renderer.setSize( window.innerWidth, window.innerHeight );
 		document.body.appendChild( renderer.domElement );
-
-		var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-		var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 		let objects = {};
 
 		camera.position.z = 5;
@@ -54,20 +53,20 @@
 			//var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
 			//console.log(code);
 			if(event.type == Blockly.Events.BLOCK_CREATE){
-				if(event.xml.attributes.type.value == 'cube'){
-					console.log('Spawn a cube!');
-					var cube = new THREE.Mesh( geometry, material );
-					cube.position.x = Math.random()*2-1;
-					cube.position.y = Math.random()*2-1;
-					cube.position.z = Math.random()*2-1;
-					scene.add( cube );
-					objects[event.blockId] = cube;
+				if(isKnownObjectType(event.xml.attributes.type.value)){
+					console.log('Spawn a '+event.xml.attributes.type.value);
+					var obj = makeObject(event.xml.attributes.type.value, {});
+					obj.position.x = Math.random()*2-1;
+					obj.position.y = Math.random()*2-1;
+					obj.position.z = Math.random()*2-1;
+					scene.add( obj );
+					objects[event.blockId] = obj;
 				}
 				console.log('Block created:');
 				console.log(event);
 			}
 			if(event.type == Blockly.Events.BLOCK_DELETE){
-				if(event.oldXml.attributes.type.value == 'cube'){
+				if(isKnownObjectType(event.oldXml.attributes.type.value)){
 					scene.remove(objects[event.blockId]);
 					delete objects[event.blockId];
 				}

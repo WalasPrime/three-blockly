@@ -1,23 +1,9 @@
-Blockly.Blocks['cube'] = {
-	init: function(){
-		this.setInputsInline(true);
-		this.appendDummyInput()
-			.appendField('Object')
-			.appendField(new Blockly.FieldDropdown([
-				['Cube', 'cube'],
-				['Sphere', 'sphere']
-			]), 'MODEL');
-		this.appendValueInput('SIZE')
-			.appendField('size')
-			.appendField(new Blockly.FieldNumber('100'), 'FIELDNAME');
-		this.setColour(160);
-		this.appendStatementInput('INIT')
-			.appendField('initialize')
-		this.appendStatementInput('ANIMATION')
-			.appendField('animate')
+addObjectDefinition({
+	name: 'Cube',
+	attributes: [],
+	create: function(graphics, attributes){
+		return new graphics.Mesh(graphics.BoxGeometry(1,1,1), graphics.MeshBasicMaterial({color: 0xFF0000}));
 	}
-}
+});
 
-Blockly.JavaScript['cube'] = function(block){
-
-}
+loadBlockDefinitions();
