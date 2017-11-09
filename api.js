@@ -22,7 +22,7 @@ function loadBlockDefinitions(){
 	BLOCK_DEFS.forEach((def) => {
 		Blockly.Blocks[def.name] = {
 			init: function(){
-				this.setInputsInline(true);
+				this.setInputsInline(false);
 				this.setColour(160);
 				this.setNextStatement(true);
 				this.setPreviousStatement(true);

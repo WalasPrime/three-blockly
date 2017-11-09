@@ -4,6 +4,10 @@ Graphics.BoxGeometry = function(w, h, d){
 	return new THREE.BoxGeometry(w,h,d);
 }
 
+Graphics.SphereGeometry = function(w, h, d){
+	return new THREE.SphereGeometry(w,h,d);
+}
+
 Graphics.MeshBasicMaterial = function(opts){
 	return new THREE.MeshBasicMaterial(opts);
 }
