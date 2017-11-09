@@ -4,8 +4,8 @@ Graphics.BoxGeometry = function(w, h, d){
 	return new THREE.BoxGeometry(w,h,d);
 }
 
-Graphics.SphereGeometry = function(w, h, d){
-	return new THREE.SphereGeometry(w,h,d);
+Graphics.SphereGeometry = function(r, w, h){
+	return new THREE.SphereGeometry(r,w,h);
 }
 
 Graphics.MeshBasicMaterial = function(opts){
