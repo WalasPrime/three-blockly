@@ -4,30 +4,52 @@ function addObjectDefinition(def){
 	BLOCK_DEFS.push(def)
 }
 
+function defaultForType(type){
+	switch(type){
+		case 'value': return '0';
+		case 'statement': return '';
+	}
+}
+
+function getCodeForType(type, block, name){
+	switch(type){
+		case 'value': return Blockly.JavaScript.valueToCode(block, name);
+		case 'statement': return Blockly.JavaScript.statementToCode(block, name);
+	}
+}
+
 function loadBlockDefinitions(){
 	BLOCK_DEFS.forEach((def) => {
 		Blockly.Blocks[def.name] = {
 			init: function(){
 				this.setInputsInline(true);
+				this.setColour(160);
+				this.setNextStatement(true);
+				this.setPreviousStatement(true);
 				this.appendDummyInput()
 					.appendField(def.name)
-				this.appendValueInput('SIZE')
-					.appendField('size')
-					.appendField(new Blockly.FieldNumber('100'), 'FIELDNAME');
-				this.setColour(160);
-				this.appendStatementInput('INIT')
-					.appendField('initialize')
-				this.appendStatementInput('ANIMATION')
-					.appendField('animate')
+				def.attributes.forEach((attr) => {
+					var f = null;
+					switch(attr.type){
+						case 'value':
+							this.appendValueInput(attr.name)
+								.appendField(attr.name)
+						break;
+						case 'statement':
+							this.appendStatementInput(attr.name)
+								.appendField(attr.name)
+						break;
+					}
+				});
 			}
 		};
+		Blockly.JavaScript[def.name] = function(block) {
+			var attributes_resolved = {};
+			def.attributes.forEach((attr) => {
+				attributes_resolved[attr.name] = getCodeForType(attr.type, block, attr.name) || attr.default || defaultForType(attr.type);
+			});
+			var spawn_code = `addToScene(${def.create.toString()}, (obj) => {${attributes_resolved.initialization}}, () => {${attributes_resolved.animation}}, ${JSON.stringify(attributes_resolved)});`;
+			return spawn_code;
+		}
 	});
-}
-
-function isKnownObjectType(type){
-	return BLOCK_DEFS.filter((def) => def.name == type).length > 0;
-}
-
-function makeObject(type, attributes){
-	return BLOCK_DEFS.filter((def) => def.name == type)[0].create(Graphics, attributes);
 }

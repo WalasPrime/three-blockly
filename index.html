@@ -1,5 +1,6 @@
 <script src="lib/blockly_compressed.js"></script>
 <script src="lib/blocks_compressed.js"></script>
+<script src="lib/javascript_compressed.js"></script>
 <script src="lib/en.js"></script>
 <script src="api.js"></script>
 <script src="blocks.js"></script>
@@ -26,52 +27,32 @@
 	<block type="text_print"></block>
   </xml>
 
-  <script src="lib/three.min.js"></script>
-  <script src="graphics.js"></script>
-  <script>
-	  // Our Javascript will go here.
-		var scene = new THREE.Scene();
-		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+<script src="lib/three.min.js"></script>
+<script src="graphics.js"></script>
+<script>
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+	//camera.position = {x: 0, y: 0, z: -10};
 
-		var renderer = new THREE.WebGLRenderer();
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild( renderer.domElement );
-		let objects = {};
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
 
-		camera.position.z = 5;
-		function animate() {
-			requestAnimationFrame( animate );
-			Object.keys(objects).forEach((key) => {
-				objects[key].rotation.x += 0.1;
-				objects[key].rotation.y += 0.1;
-			});
-			renderer.render( scene, camera );
-		}
-		animate();
-		// Blockly
-		function blocksChanged(event){
-			//var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
-			//console.log(code);
-			if(event.type == Blockly.Events.BLOCK_CREATE){
-				if(isKnownObjectType(event.xml.attributes.type.value)){
-					console.log('Spawn a '+event.xml.attributes.type.value);
-					var obj = makeObject(event.xml.attributes.type.value, {});
-					obj.position.x = Math.random()*2-1;
-					obj.position.y = Math.random()*2-1;
-					obj.position.z = Math.random()*2-1;
-					scene.add( obj );
-					objects[event.blockId] = obj;
-				}
-				console.log('Block created:');
-				console.log(event);
-			}
-			if(event.type == Blockly.Events.BLOCK_DELETE){
-				if(isKnownObjectType(event.oldXml.attributes.type.value)){
-					scene.remove(objects[event.blockId]);
-					delete objects[event.blockId];
-				}
-			}
-		}
-		var workspacePlayground = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
-		workspacePlayground.addChangeListener(blocksChanged);
-  </script>
+	camera.position.z = 5;
+	function animate() {
+		requestAnimationFrame( animate );
+		// TODO: Call animation functions
+		//Graphics.AnimateScene();
+		renderer.render( scene, camera );
+	}
+	animate();
+
+	function blocksChanged(event){
+		var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
+		console.log(code);
+		Graphics.ClearScene(scene);
+		Graphics.SceneFromCode(scene, code);
+	}
+	var workspacePlayground = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
+	workspacePlayground.addChangeListener(blocksChanged);
+</script>

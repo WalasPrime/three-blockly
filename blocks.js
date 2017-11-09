@@ -1,8 +1,12 @@
 addObjectDefinition({
 	name: 'Cube',
-	attributes: [],
+	attributes: [
+		{name: 'size', type: 'value', default: 1},
+		{name: 'initialization', type: 'statement', default: 'obj.position.x = Math.random()*2-1;obj.position.y = Math.random()*2-1;obj.position.z = Math.random()*2-1;'},
+		{name: 'animation', type: 'statement'}
+	],
 	create: function(graphics, attributes){
-		return new graphics.Mesh(graphics.BoxGeometry(1,1,1), graphics.MeshBasicMaterial({color: 0xFF0000}));
+		return new graphics.Mesh(graphics.BoxGeometry(attributes.size,attributes.size,attributes.size), graphics.MeshBasicMaterial({color: 0xFF0000}));
 	}
 });
 
