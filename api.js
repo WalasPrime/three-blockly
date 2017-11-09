@@ -48,7 +48,7 @@ function loadBlockDefinitions(){
 			def.attributes.forEach((attr) => {
 				attributes_resolved[attr.name] = getCodeForType(attr.type, block, attr.name) || attr.default || defaultForType(attr.type);
 			});
-			var spawn_code = `addToScene(${def.create.toString()}, (obj) => {${attributes_resolved.initialization}}, () => {${attributes_resolved.animation}}, ${JSON.stringify(attributes_resolved)});`;
+			var spawn_code = `addToScene(${def.create.toString()}, (obj) => {${attributes_resolved.initialization}}, (obj) => {${attributes_resolved.animation}}, ${JSON.stringify(attributes_resolved)});`;
 			return spawn_code;
 		}
 	});
