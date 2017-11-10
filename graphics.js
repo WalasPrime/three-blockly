@@ -8,6 +8,14 @@ Graphics.SphereGeometry = function(r, w, h){
 	return new THREE.SphereGeometry(r,w,h);
 }
 
+Graphics.PlaneGeometry = function(w, h){
+	return new THREE.PlaneGeometry(w,h);	
+}
+
+Graphics.ConeGeometry = function(r, h){
+	return new THREE.ConeGeometry(r,h);	
+}
+
 Graphics.MeshBasicMaterial = function(opts){
 	return new THREE.MeshBasicMaterial(opts);
 }

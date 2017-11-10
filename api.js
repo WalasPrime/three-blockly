@@ -1,7 +1,7 @@
 var BLOCK_DEFS = [];
 
 function addObjectDefinition(def){
-	BLOCK_DEFS.push(def)
+	BLOCK_DEFS.push(def);
 }
 
 function defaultForType(type){
