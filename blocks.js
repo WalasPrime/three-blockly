@@ -50,4 +50,58 @@ addObjectDefinition({
 	}
 });
 
+addObjectDefinition({
+	name: 'Teapot',
+	attributes: [
+		{name: 'size', type: 'value', default: 1},
+		{name: 'initialization', type: 'statement', default: 'obj.position.x = 0;obj.position.y = -1;obj.position.z = 0;'},
+		{name: 'animation', type: 'statement', default: 'obj.rotation.x += 0.01; obj.rotation.z += 0.02;'}
+	],
+	create: function(graphics, attributes){
+		return new graphics.Mesh(graphics.TeapotGeometry(attributes.size), graphics.MeshBasicMaterial({color: 0xf18507}));
+	}
+});
+
+addObjectDefinition({
+	name: 'Cylinder',
+	attributes: [
+		{name: 'radiusTop', type: 'value', default: 2},
+		{name: 'radiusBottom', type: 'value', default: 2},
+		{name: 'height', type: 'value', default: 10},
+		{name: 'radiusSegments', type: 'value', default: 16},
+		{name: 'initialization', type: 'statement', default: 'obj.position.x = 0;obj.position.y = -1;obj.position.z = 0;'},
+		{name: 'animation', type: 'statement', default: 'obj.rotation.x += 0.01; obj.rotation.z += 0.02;'}
+	],
+	create: function(graphics, attributes){
+		return new graphics.Mesh(graphics.CylinderGeometry(attributes.radiusTop, attributes.radiusBottom, attributes.height, attributes.radiusSegments), graphics.MeshBasicMaterial({color: 0x36f6c8}));
+	}
+});
+
+addObjectDefinition({
+	name: 'Torus',
+	attributes: [
+		{name: 'radius', type: 'value', default: 5},
+		{name: 'tube', type: 'value', default: 1},
+		{name: 'initialization', type: 'statement', default: 'obj.position.x = 0;obj.position.y = -1;obj.position.z = 0;'},
+		{name: 'animation', type: 'statement', default: 'obj.rotation.x += 0.01; obj.rotation.z += 0.02;'}
+	],
+	create: function(graphics, attributes){
+		return new graphics.Mesh(graphics.TorusGeometry(attributes.radius, attributes.tube), graphics.MeshBasicMaterial({color: 0xdddddd}));
+	}
+});
+
+addObjectDefinition({
+	name: 'Box',
+	attributes: [
+		{name: 'width', type: 'value', default: 4},
+		{name: 'height', type: 'value', default: 5},
+		{name: 'depth', type: 'value', default: 5},
+		{name: 'initialization', type: 'statement', default: 'obj.position.x = 0;obj.position.y = -1;obj.position.z = 0; obj.rotation.x = -1.57;'},
+		{name: 'animation', type: 'statement', default: ' obj.rotation.z += 0.01;'}
+	],
+	create: function(graphics, attributes){
+		return new graphics.Mesh(graphics.BoxGeometry(attributes.width, attributes.height, attributes.depth), graphics.MeshBasicMaterial({color: 0xe3bd34}));
+	}
+});
+
 loadBlockDefinitions();

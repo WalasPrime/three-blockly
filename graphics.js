@@ -9,12 +9,30 @@ Graphics.SphereGeometry = function(r, w, h){
 }
 
 Graphics.PlaneGeometry = function(w, h){
-	return new THREE.PlaneGeometry(w,h);	
+	return new THREE.PlaneGeometry(w,h);
 }
 
 Graphics.ConeGeometry = function(r, h){
-	return new THREE.ConeGeometry(r,h);	
+	return new THREE.ConeGeometry(r,h);
 }
+
+Graphics.TeapotGeometry = function(s){
+	return new THREE.TeapotBufferGeometry(s);
+}
+
+Graphics.CylinderGeometry = function(rT, rB, h){
+	return new THREE.CylinderGeometry(rT, rB, h);
+}
+
+Graphics.TorusGeometry = function(r, t){
+	return new THREE.TorusGeometry(r, t);
+}
+
+Graphics.BoxGeometry = function(w, h, d){
+	return new THREE.BoxGeometry(w, h, d);
+}
+
+
 
 Graphics.MeshBasicMaterial = function(opts){
 	return new THREE.MeshBasicMaterial(opts);
