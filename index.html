@@ -14,24 +14,34 @@
 	</style>
 </head>
 
-<div id="blocklyDiv" style="height: 480px; width: 600px; position: fixed; opacity: 0.8;"></div>
+<div id="blocklyDiv" style="height: 480px; width: 1024px; position: fixed; opacity: 0.6;"></div>
 
 <xml id="toolbox" style="display: none">
-	<block type="Cube"></block>
-	<block type="Sphere"></block>
-	<block type="Plane"></block>
-	<block type="Cone"></block>
-	<block type="Teapot"></block>
-	<block type="Cylinder"></block>
-	<block type="Torus"></block>
-	<block type="Box"></block>
-	<block type="controls_if"></block>
-	<block type="controls_repeat_ext"></block>
-	<block type="logic_compare"></block>
-	<block type="math_number"></block>
-	<block type="math_arithmetic"></block>
-	<block type="text"></block>
-	<block type="text_print"></block>
+	<category name="General">
+		<block type="controls_if"></block>
+		<block type="controls_for"></block>
+		<block type="logic_compare"></block>
+		<block type="math_number"></block>
+		<block type="math_arithmetic"></block>
+		<block type="text"></block>
+		<block type="text_print"></block>
+	</category>
+	<category name="Variables" custom="VARIABLE"></category>
+	<category name="Functions" custom="PROCEDURE"></category>
+	<category name="Geometry">
+		<block type="Cube"></block>
+		<block type="Sphere"></block>
+		<block type="Plane"></block>
+		<block type="Cone"></block>
+		<block type="Teapot"></block>
+		<block type="Cylinder"></block>
+		<block type="Torus"></block>
+		<block type="Box"></block>
+	</category>
+	<category name="Transformation">
+		<block type="Translate"></block>
+		<block type="Rotate"></block>
+	</category>
   </xml>
 
 <script src="lib/three.min.js"></script>
@@ -42,7 +52,7 @@
 	var scene = new THREE.Scene();
 	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 	var controls;
-	//camera.position = {x: 0, y: 0, z: -10};
+	camera.position = {x: 0, y: 0, z: -10};
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );

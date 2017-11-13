@@ -55,11 +55,13 @@ Graphics.SceneFromCode = function(scene, code){
 		initFn(obj);
 		objects.push({
 			object: obj,
-			animate: animFn
+			animate: animFn,
+			attributes: attributes
 		});
-		scene.add(obj);
+		if(obj)
+			scene.add(obj);
 	}
-	eval(code);
+	eval('var obj;'+code);
 	console.log('Created '+objects.length+' objects');
 }
 
