@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button {
+    background: #3db0d4;
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    color: #fff;
+    -webkit-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+button:hover {
+    background: #2c43a6;
+}
+
+input{
+    border: 1px solid #ddd;
+    padding: 1px;
+}
+
+canvas {
+    width: 100%;
+    height: 100%
+}
+
+#toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    height: 30px;
+}
+
+#editor {
+    opacity: 0.6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1024px;
+    -webkit-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+    background: #fff;
+    z-index: 5;
+}
+
+#editor:hover {
+    opacity: 1;
+}
+
+#editor .header {
+    padding: 10px;
+    padding-left: 140px;
+}
+
+#blocklyDiv {
+    height: 480px;
+    width: 100%;
+}
+
+#toggle {
+    cursor: pointer;
+}
+
+.forFrom{
+    display: inline-block;
+    vertical-align: top;
+}

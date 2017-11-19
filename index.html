@@ -1,96 +1,121 @@
-<script src="lib/blockly_compressed.js"></script>
-<script src="lib/blocks_compressed.js"></script>
-<script src="lib/javascript_compressed.js"></script>
-<script src="lib/en.js"></script>
-<script src="api.js"></script>
-<script src="blocks.js"></script>
+<!DOCTYPE html>
+<html>
 
 <head>
-	<meta charset=utf-8>
-	<title>My first three.js app</title>
-	<style>
-		body { margin: 0; }
-		canvas { width: 100%; height: 100% }
-	</style>
+	<meta charset="utf-8">
+	<title>Blockly-threeJS</title>
+	<script src="lib/blockly_compressed.js"></script>
+	<script src="lib/blocks_compressed.js"></script>
+	<script src="lib/javascript_compressed.js"></script>
+	<script src="lib/en.js"></script>
+	<script src="api.js"></script>
+	<script src="blocks.js"></script>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<div id="blocklyDiv" style="height: 480px; width: 1024px; position: fixed; opacity: 0.6;"></div>
+<body>
 
-<xml id="toolbox" style="display: none">
-	<category name="General">
-		<block type="controls_if"></block>
-		<block type="controls_for"></block>
-		<block type="logic_compare"></block>
-		<block type="math_number"></block>
-		<block type="math_arithmetic"></block>
-		<block type="text"></block>
-		<block type="text_print"></block>
-	</category>
-	<category name="Variables" custom="VARIABLE"></category>
-	<category name="Functions" custom="PROCEDURE"></category>
-	<category name="Geometry">
-		<block type="Cube"></block>
-		<block type="Sphere"></block>
-		<block type="Plane"></block>
-		<block type="Cone"></block>
-		<block type="Teapot"></block>
-		<block type="Cylinder"></block>
-		<block type="Torus"></block>
-		<block type="Box"></block>
-	</category>
-	<category name="Transformation">
-		<block type="Translate"></block>
-		<block type="Rotate"></block>
-	</category>
-  </xml>
+	<img id="toggle" onclick="toggleBlockly()" src="img/logo-blockly.png" alt="Blockly">
+	<div id="editor">
+		<div class="header">
+			<button id="export" onclick="exportBlock()">Export</button>
+			<div class="forFrom">
+				<input id="import_file" type="file" required>
+				<button id="import" onclick="importBlocks()">Import</button>
+			</div>
+			<button id="clear" onclick="clearBlocks()">Wyczyść</button>
+		</div>
+		<div id="blocklyDiv"></div>
+	</div>
 
-<script src="lib/three.min.js"></script>
-<script src="lib/geometries/TeapotBufferGeometry.js"></script>
-<script src="lib/controls/TrackballControls.js"></script>
-<script src="graphics.js"></script>
-<script>
-	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-	var controls;
-	camera.position = {x: 0, y: 0, z: -10};
-
-	var renderer = new THREE.WebGLRenderer();
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
-
-	// scene.background = new THREE.Color( 0xcccccc );
-
-	controls = new THREE.TrackballControls( camera );
-	controls.rotateSpeed = 1.0;
-	controls.zoomSpeed = 1.2;
-	controls.panSpeed = 0.8;
-	controls.noZoom = false;
-	controls.noPan = false;
-	controls.staticMoving = true;
-	controls.dynamicDampingFactor = 0.3;
-	controls.keys = [ 65, 83, 68 ];
-	controls.addEventListener( 'change', render );
+	<xml id="toolbox" style="display: none">
+		<category name="General">
+			<block type="controls_if"></block>
+			<block type="controls_for"></block>
+			<block type="logic_compare"></block>
+			<block type="math_number"></block>
+			<block type="math_arithmetic"></block>
+			<block type="text"></block>
+			<block type="text_print"></block>
+		</category>
+		<category name="Variables" custom="VARIABLE"></category>
+		<category name="Functions" custom="PROCEDURE"></category>
+		<category name="Geometry">
+			<block type="Cube"></block>
+			<block type="Sphere"></block>
+			<block type="Plane"></block>
+			<block type="Cone"></block>
+			<block type="Teapot"></block>
+			<block type="Cylinder"></block>
+			<block type="Torus"></block>
+			<block type="Box"></block>
+		</category>
+		<category name="Transformation">
+			<block type="Translate"></block>
+			<block type="Rotate"></block>
+		</category>
+	</xml>
 
 
-	camera.position.z = 10;
-	function animate() {
-		requestAnimationFrame( animate );
-		Graphics.AnimateScene();
-		controls.update();
-		render();
-	}
-	animate();
+	<script src="lib/three.min.js"></script>
+	<script src="lib/geometries/TeapotBufferGeometry.js"></script>
+	<script src="lib/controls/TrackballControls.js"></script>
+	<script src="graphics.js"></script>
+	<script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+		var controls;
+		camera.position = {
+			x: 0,
+			y: 0,
+			z: -10
+		};
 
-	function render() {
-	    renderer.render(scene, camera);
-	}
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		document.body.appendChild(renderer.domElement);
 
-	function blocksChanged(event){
-		var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
-		console.log(code);
-		Graphics.ClearScene(scene);
-		Graphics.SceneFromCode(scene, code);
-	}
-	var workspacePlayground = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
-	workspacePlayground.addChangeListener(blocksChanged);
-</script>
+		// scene.background = new THREE.Color( 0xcccccc );
+
+		controls = new THREE.TrackballControls(camera);
+		controls.rotateSpeed = 1.0;
+		controls.zoomSpeed = 1.2;
+		controls.panSpeed = 0.8;
+		controls.noZoom = false;
+		controls.noPan = false;
+		controls.staticMoving = true;
+		controls.dynamicDampingFactor = 0.3;
+		controls.keys = [65, 83, 68];
+		controls.addEventListener('change', render);
+
+
+		camera.position.z = 10;
+
+		function animate() {
+			requestAnimationFrame(animate);
+			Graphics.AnimateScene();
+			controls.update();
+			render();
+		}
+		animate();
+
+		function render() {
+			renderer.render(scene, camera);
+		}
+
+		function blocksChanged(event) {
+			var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
+			// console.log(code);
+			Graphics.ClearScene(scene);
+			Graphics.SceneFromCode(scene, code);
+		}
+		var workspacePlayground = Blockly.inject('blocklyDiv', {
+			toolbox: document.getElementById('toolbox')
+		});
+		workspacePlayground.addChangeListener(blocksChanged);
+
+	</script>
+	<script src="editor.js"></script>
+</body>
+
+</html>
