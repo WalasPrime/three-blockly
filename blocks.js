@@ -57,6 +57,19 @@ addObjectDefinition({
 });
 
 addObjectDefinition({
+	name: 'Color',
+	attributes: [
+		{name: 'color', type: 'color', default: '#0F0'}
+	],
+	transform: function(object, attributes){
+		if(object){
+			console.log(attributes.color);
+			object.material.color.set(attributes.color);
+		}
+	}
+});
+
+addObjectDefinition({
 	name: 'Plane',
 	attributes: [
 		{name: 'width', type: 'value', default: 6},
