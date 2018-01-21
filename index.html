@@ -76,7 +76,7 @@
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		document.body.appendChild(renderer.domElement);
 
-		// scene.background = new THREE.Color( 0xcccccc );
+		scene.background = new THREE.Color( 0xcccccc );
 
 		controls = new THREE.TrackballControls(camera);
 		controls.rotateSpeed = 1.0;
@@ -89,8 +89,18 @@
 		controls.keys = [65, 83, 68];
 		controls.addEventListener('change', render);
 
-
 		camera.position.z = 10;
+		
+		
+		// new ambient lighting for scene
+		var light = new THREE.AmbientLight(0xffffff, 0.85);
+		
+		// new point lighting for scene
+		var pointLight = new THREE.PointLight(0xffffff);
+		pointLight.position.set(0, 300, 200);
+		
+	
+		
 
 		function animate() {
 			requestAnimationFrame(animate);
@@ -107,8 +117,12 @@
 		function blocksChanged(event) {
 			var code = Blockly.JavaScript.workspaceToCode(workspacePlayground);
 			// console.log(code);
+			
 			Graphics.ClearScene(scene);
 			Graphics.SceneFromCode(scene, code);
+			
+			scene.add(light);
+			scene.add(pointLight);
 		}
 		var workspacePlayground = Blockly.inject('blocklyDiv', {
 			toolbox: document.getElementById('toolbox')
