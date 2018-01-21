@@ -8,6 +8,7 @@ function defaultForType(type){
 	switch(type){
 		case 'value': return '0';
 		case 'statement': return '';
+		case 'color': return '0x0000ff';
 	}
 }
 
@@ -15,6 +16,7 @@ function getCodeForType(type, block, name){
 	switch(type){
 		case 'value': return Blockly.JavaScript.valueToCode(block, name);
 		case 'statement': return Blockly.JavaScript.statementToCode(block, name);
+		case 'color': return '"'+block.getFieldValue('color')+'"';
 	}
 }
 
@@ -50,6 +52,10 @@ function loadBlockDefinitions(){
 						case 'statement':
 							this.appendStatementInput(attr.name)
 								.appendField(attr.name)
+						break;
+						case 'color':
+							this.appendDummyInput()
+								.appendField(new Blockly.FieldColour(attr.default), attr.name)
 						break;
 					}
 				});
