@@ -35,7 +35,8 @@ Graphics.BoxGeometry = function(w, h, d){
 
 
 Graphics.MeshBasicMaterial = function(opts){
-	return new THREE.MeshBasicMaterial(opts);
+	return new THREE.MeshLambertMaterial(opts);
+	//THREE.MeshLambertMaterial();
 }
 
 Graphics.Mesh = function(geometry, material){
@@ -58,8 +59,10 @@ Graphics.SceneFromCode = function(scene, code){
 			animate: animFn,
 			attributes: attributes
 		});
-		if(obj)
+		if(obj){
 			scene.add(obj);
+		}
+			
 	}
 	eval('var obj;'+code);
 	console.log('Created '+objects.length+' objects');
