@@ -1,0 +1,160 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="Cube" id="H)XwVH)*QOZHtq~u^48=" x="19" y="-229">
+    <statement name="initialization">
+      <block type="Translate" id="YvYrj@5lR7]Rsu#T^h)!">
+        <value name="dx">
+          <block type="math_number" id="kq,_k~L]JW9)B3{xuShd">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="Color" id="M?GI-XOy3{`G7:Uq)=Au">
+            <field name="color">#cc33cc</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="Sphere" id="0MEJg=@tqnRAOer)kgkg">
+        <statement name="initialization">
+          <block type="Translate" id="p-R7Kx!iHOHB_x56lqpb">
+            <value name="dx">
+              <block type="math_number" id="Aj]NKJ-,J[:wSyWwL2In">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+            <next>
+              <block type="Color" id="8Z#[00uz`lz#Vr6[Y/v3">
+                <field name="color">#000000</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="Plane" id="]ct5d2NKVy^dVccJ97W#">
+            <statement name="initialization">
+              <block type="Translate" id="`SjKE1Xb2.UY2P(lXEo4">
+                <value name="dx">
+                  <block type="math_number" id="`srGDNuO(2b]wevWN.!9">
+                    <field name="NUM">-10</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="Color" id="cQM+{Pqk.0?T?xI1S5,P">
+                    <field name="color">#ff6666</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="Cone" id="Fq..|+li8@8K(fA![A$t">
+                <statement name="initialization">
+                  <block type="Translate" id="Fk_C8.3SeajAssvY)[jH">
+                    <value name="dy">
+                      <block type="math_number" id="p7=rl7@=_Y{Jo5u=n/=*">
+                        <field name="NUM">10</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="Color" id="+|ius(U}A%,V=jZ)osqJ">
+                        <field name="color">#0F0</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="Teapot" id="3)+-Rlv{JfQ}rE}m;7|C">
+                    <statement name="initialization">
+                      <block type="Translate" id="pI`!,k@7nlEt^fE-zZhf">
+                        <value name="dy">
+                          <block type="math_number" id="*j~{r#B/qp]Gqy3N:XUH">
+                            <field name="NUM">-10</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="Color" id="`L10bZ[|0k,Kllnf:lr(">
+                            <field name="color">#ffcc33</field>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="Cylinder" id="h$LQ1A(p?3A3?xdvDx:V">
+                        <statement name="initialization">
+                          <block type="Translate" id="axV^Pbba{Moaih!)oG[:">
+                            <value name="dx">
+                              <block type="math_number" id="bEhA#tcc;*.q(fEYiGZi">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                            <value name="dy">
+                              <block type="math_number" id="-DR4TF8dpLV1)6t;L/XU">
+                                <field name="NUM">10</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="Color" id=",TiU0hK%df(Jh[/uAw[B">
+                                <field name="color">#3366ff</field>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="Torus" id="00njAO6Kx({_[oPds=RK">
+                            <statement name="initialization">
+                              <block type="Translate" id="wc2@~0D=XxGKgY+.-zrV">
+                                <value name="dx">
+                                  <block type="math_number" id="lip`fVq2N0I*N@++hvvj">
+                                    <field name="NUM">-10</field>
+                                  </block>
+                                </value>
+                                <value name="dy">
+                                  <block type="math_number" id="?(N[zO=OW38IoT:|QcV8">
+                                    <field name="NUM">10</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="Color" id="QR{5v)1M)=3HA$p!_cTw">
+                                    <field name="color">#c0c0c0</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                            <next>
+                              <block type="Box" id="t6T%B}?~[[2_Y@!*ki`U">
+                                <statement name="initialization">
+                                  <block type="Translate" id="A9:U-AK0iapzKh]o=wyX">
+                                    <value name="dx">
+                                      <block type="math_number" id="EMVJ%koeeNFEVTiD3v6:">
+                                        <field name="NUM">10</field>
+                                      </block>
+                                    </value>
+                                    <value name="dy">
+                                      <block type="math_number" id="67dgv;+lY|6Bc/iyYDY1">
+                                        <field name="NUM">-10</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="Color" id="_]ooffqi/yjW[BB]28y0">
+                                        <field name="color">#00cccc</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

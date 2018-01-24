@@ -1,0 +1,88 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="" id="f[Hb:/Q$t5s=^.pYA4sr">i</variable>
+  </variables>
+  <block type="controls_for" id="S;C~1cgDhwi*-~vO~y%z" x="62" y="70">
+    <field name="VAR" id="f[Hb:/Q$t5s=^.pYA4sr" variabletype="">i</field>
+    <value name="FROM">
+      <block type="math_number" id="k$%P@ltSFT6Yl5pH#3;!">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+    <value name="TO">
+      <block type="math_number" id="%tQZ@H(3b8mqwO7y:SSZ">
+        <field name="NUM">7</field>
+      </block>
+    </value>
+    <statement name="DO">
+      <block type="Cube" id="T-U@ncro1h-/g0OOqZk7">
+        <statement name="initialization">
+          <block type="Color" id="uN}|@c3]HgW]2VPv`lAQ">
+            <field name="color">#ffffff</field>
+            <next>
+              <block type="Translate" id="QS-|4;;u[BLu#]ijIpdi">
+                <value name="dx">
+                  <block type="math_arithmetic" id="+I{9T+^Lf_~jR=-JcDQ2">
+                    <field name="OP">MULTIPLY</field>
+                    <value name="A">
+                      <block type="variables_get" id="?WTW+w]j13wCg0S|4PV(">
+                        <field name="VAR" id="f[Hb:/Q$t5s=^.pYA4sr" variabletype="">i</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="TtR5nx4C5,tqmpAGpWe~">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="lAS~lvNlUb=PCI^{L.00">
+                    <value name="IF0">
+                      <block type="logic_compare" id="GgI}=^@q+!N-`XS+,aiW">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="variables_get" id="C85Hzsvmo?PR}kk%)d1v">
+                            <field name="VAR" id="f[Hb:/Q$t5s=^.pYA4sr" variabletype="">i</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="l=ZYd~Q`il??j/L#M3g$">
+                            <field name="NUM">3</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="Color" id="(=uUc^vekw^..Aixy[N{">
+                        <field name="color">#ff0000</field>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="Rotate" id="v3NyoD,eecoEorrd3Tt?">
+                        <value name="rx">
+                          <block type="variables_get" id="R5u{R1xOk]#W:CaAe6D[">
+                            <field name="VAR" id="f[Hb:/Q$t5s=^.pYA4sr" variabletype="">i</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="animation">
+          <block type="Rotate" id="*{4uKPrj,2QVv]iqhUDk">
+            <value name="ry">
+              <block type="math_number" id="yqWR2[9CT7F,M+#Rz[uw">
+                <field name="NUM">0.01</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>
